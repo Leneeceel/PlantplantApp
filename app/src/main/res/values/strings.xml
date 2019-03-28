@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PlantplantApp</string>
+
+    <string name="welcome">Welcome!</string>
+    <string name="userName">User Name</string>
+    <string name="password">Password</string>
+    <string name="admin">Admin</string>
+    <string name="user">User</string>
+    <string name="logIn">Log In</string>
+</resources>

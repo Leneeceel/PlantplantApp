@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="red">#ff0000</color>
+    <color name="orange">#ffa500</color>
+    <color name="lightYellow">#ffffe0</color>
+    <color name="yellow">#ffff00</color>
+    <color name="paleGreen">#98fb98</color>
+    <color name="lightCyan">#e0ffff</color>
+    <color name="blue">#0000ff</color>
+    <color name="lavender">#e6e6fa</color>
+    <color name="azure">#F0FFFF</color>
+    <color name="gainsboro">#DCDCDC</color>
+    <color name="black">#000000</color>
+</resources>
