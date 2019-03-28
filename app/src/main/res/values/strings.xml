@@ -9,4 +9,9 @@
     <string name="logIn">Log In</string>
     <string name="register">Register</string>
     <string name="registration">Registration</string>
+    <string name="fName">First Name</string>
+    <string name="lName">Last Name</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="province">Province</string>
 </resources>

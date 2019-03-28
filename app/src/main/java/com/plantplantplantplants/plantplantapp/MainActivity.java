@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class MainActivity extends Activity
@@ -47,8 +50,17 @@ public class MainActivity extends Activity
     EditText edtUserName,
             edtPassword;
 
+    RadioGroup rdgIdtype;
+    RadioButton rdbAdmin,
+                rdbUser;
+
+    Button btnLogin;
+
+
     String userName,
             password;
+
+    boolean isUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,6 +70,17 @@ public class MainActivity extends Activity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        edtUserName = findViewById(R.id.edtUserName);
+        edtPassword = findViewById(R.id.edtPassword);
+        rdgIdtype = findViewById(R.id.rdgIdtype);
+        btnLogin = findViewById(R.id.btnLogIn);
+        btnLogin.setEnabled(false);
+        rdbAdmin = findViewById(R.id.rdbAdmin);
+        rdbUser = findViewById(R.id.rdbUser);
+
+        //Radio button setting
+        radioGroupSetting();
     }
 
     public void btnLogIn(View v)
@@ -65,7 +88,8 @@ public class MainActivity extends Activity
         userName = edtUserName.getText().toString();
         password = edtPassword.getText().toString();
 
-        if (dbManager.logInValidation(userName, password))
+        //Login validation
+        if (dbManager.logInValidation(userName, password, isUser))
         {
             messageDisplay("Login Successful.");
         }
@@ -82,6 +106,27 @@ public class MainActivity extends Activity
         startActivity(i);
     }
 
+    void radioGroupSetting()
+    {
+        rdgIdtype.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId)
+            {
+                if (rdbAdmin.isChecked())
+                {
+                    btnLogin.setEnabled(true);
+                    isUser = false;
+                }
+                else if (rdbUser.isChecked())
+                {
+                    btnLogin.setEnabled(true);
+                    isUser = true;
+                }
+            }
+        });
+    }
+
     //Display a parameter value as a toast message
     void messageDisplay(String st)
     {
@@ -90,6 +135,5 @@ public class MainActivity extends Activity
                 Toast.LENGTH_LONG);
         toast.show();
     }
-
 
 }

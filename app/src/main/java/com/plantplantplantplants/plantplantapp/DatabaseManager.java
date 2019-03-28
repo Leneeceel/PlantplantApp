@@ -76,16 +76,37 @@ public class DatabaseManager extends SQLiteOpenHelper
         db.close(); //close database connection
     }
 
-    //Validate userName and password
-    public boolean logInValidation(String userName, String password)
+    //Validate userName and password.
+    //The boolean value decides if it's a user or an admin
+    public boolean logInValidation(String userName, String password, boolean isUser)
     {
-        //userName
-        String selectUserName = "SELECT userName FROM tbl_account" +
-                " where userName = \""+userName+"\"";
-        //password
-        String selectPassword = "SELECT password FROM tbl_account" +
-                " where password = \""+password+"\"" +
-                " and userName = \""+userName+"\"";
+        String selectUserName, selectPassword;
+
+        if (isUser)
+        {
+            //userName
+            selectUserName = "SELECT userName FROM tbl_account" +
+                    " where userName = \""+userName+"\"" +
+                    " and type = 'U'";
+            //password
+            selectPassword = "SELECT password FROM tbl_account" +
+                    " where password = \""+password+"\"" +
+                    " and userName = \""+userName+"\"" +
+                    " and type = 'U'";
+        }
+        else
+        {
+            //userName
+            selectUserName = "SELECT userName FROM tbl_account" +
+                    " where userName = \""+userName+"\"" +
+                    " and type = 'A'";
+            //password
+            selectPassword = "SELECT password FROM tbl_account" +
+                    " where password = \""+password+"\"" +
+                    " and userName = \""+userName+"\"" +
+                    " and type = 'A'";
+        }
+
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor userNameCursor = db.rawQuery(selectUserName, null);
