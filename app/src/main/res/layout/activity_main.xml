@@ -32,6 +32,7 @@
                 android:text="@string/userName" />
 
             <EditText
+                android:id="@+id/edtUserName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"/>
@@ -46,6 +47,7 @@
                 android:text="@string/password"/>
 
             <EditText
+                android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
@@ -70,16 +72,23 @@
                     android:text="@string/user" />
             </RadioGroup>
         </TableRow>
-
-        <TableRow>
-            <TextView />
-            <Button
-                android:id="@+id/btnLogIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/logIn"/>
-        </TableRow>
     </TableLayout>
 
+    <Button
+        android:id="@+id/btnLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logIn"
+        android:layout_below="@id/latTableLayout"
+        android:layout_marginStart="@dimen/dp50"
+        android:onClick="btnLogIn"/>
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:layout_toEndOf="@id/btnLogIn"
+        android:layout_alignTop="@id/btnLogIn"
+        android:onClick="btnRegister"/>
 
 </RelativeLayout>

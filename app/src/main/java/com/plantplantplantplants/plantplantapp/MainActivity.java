@@ -1,8 +1,12 @@
 package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
@@ -40,6 +44,12 @@ public class MainActivity extends Activity
                     " total double,"+
                     " quantity integer);"};
 
+    EditText edtUserName,
+            edtPassword;
+
+    String userName,
+            password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,5 +59,37 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public void btnLogIn(View v)
+    {
+        userName = edtUserName.getText().toString();
+        password = edtPassword.getText().toString();
+
+        if (dbManager.logInValidation(userName, password))
+        {
+            messageDisplay("Login Successful.");
+        }
+        else
+        {
+            messageDisplay("Login Failed.");
+        }
+
+    }
+
+    public void btnRegister(View v)
+    {
+        Intent i = new Intent(MainActivity.this, Register.class);
+        startActivity(i);
+    }
+
+    //Display a parameter value as a toast message
+    void messageDisplay(String st)
+    {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                st,
+                Toast.LENGTH_LONG);
+        toast.show();
+    }
+
 
 }

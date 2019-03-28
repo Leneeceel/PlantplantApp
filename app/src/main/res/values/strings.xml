@@ -7,4 +7,6 @@
     <string name="admin">Admin</string>
     <string name="user">User</string>
     <string name="logIn">Log In</string>
+    <string name="register">Register</string>
+    <string name="registration">Registration</string>
 </resources>

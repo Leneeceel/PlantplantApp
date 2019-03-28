@@ -77,14 +77,15 @@ public class DatabaseManager extends SQLiteOpenHelper
     }
 
     //Validate userName and password
-    public boolean logInValidation(String tableName, String id, String password)
+    public boolean logInValidation(String userName, String password)
     {
-        //id
-        String selectUserName = "SELECT userName FROM " + tableName +
-                " where userName = \""+id+"\"";
-        String selectPassword = "SELECT password FROM " + tableName +
+        //userName
+        String selectUserName = "SELECT userName FROM tbl_account" +
+                " where userName = \""+userName+"\"";
+        //password
+        String selectPassword = "SELECT password FROM tbl_account" +
                 " where password = \""+password+"\"" +
-                " and userName = \""+id+"\"";
+                " and userName = \""+userName+"\"";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor userNameCursor = db.rawQuery(selectUserName, null);
@@ -106,7 +107,9 @@ public class DatabaseManager extends SQLiteOpenHelper
                 return false;
             }
             else
+            {
                 return false;
+            }
         }
         return false;
     }
