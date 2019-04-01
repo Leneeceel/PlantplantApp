@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Product_Detail"
+    android:background="@color/lightCyan">
+
+    <TextView
+        android:id="@+id/txtDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail"
+        android:textSize="@dimen/pt10"
+        android:layout_centerHorizontal="true"/>
+
+    <TableLayout
+        android:id="@+id/latTableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtDetail"
+        android:stretchColumns="1">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imgImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"/>
+            <TextView
+                android:id="@+id/txtNamePrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="aaaa"
+                android:layout_column="2"/>
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/latTableLayout"/>
+</RelativeLayout>

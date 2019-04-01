@@ -14,4 +14,21 @@
     <string name="address">Address</string>
     <string name="city">City</string>
     <string name="province">Province</string>
+    <string name="cancel">Cancel</string>
+    <string name="main">Main</string>
+    <string name="updateInfo">Update Info</string>
+    <string name="shopping">Shopping</string>
+    <string name="logOut">Log Out</string>
+    <string name="detail">Product Detail</string>
+    <string name="update">Update</string>
+
+    <string-array name="categories">
+        <item>All</item>
+        <item>Appliances</item>
+        <item>Books</item>
+        <item>Electronics</item>
+        <item>Furniture</item>
+        <item>Health</item>
+    </string-array>
+
 </resources>

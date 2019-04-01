@@ -156,6 +156,28 @@ public class DatabaseManager extends SQLiteOpenHelper
 
         return row;
     }
+
+    public String[] getUserInfo(String userName)
+    {
+        String[] row = new String[9];
+
+        String query = "SELECT * from tbl_account" +
+                " where userName = \"" + userName + "\"";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst())
+        {
+            for (int i = 0; i < row.length; i++)
+            {
+                row[i] = cursor.getString(i);
+            }
+        }
+
+        return row;
+    }
+
     public String[] retrieveAdmin(String userName)
     {
         String[] row = new String[5];
@@ -293,6 +315,87 @@ public class DatabaseManager extends SQLiteOpenHelper
 
         // return table as a list
         return table;
+    }
+
+    //get names and prices of all products
+    public List getProducts()
+    {
+        List table = new ArrayList();
+
+        String selectQuery = "SELECT name, price FROM tbl_product";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        ArrayList row = new ArrayList(); //to store one row
+
+        if (cursor.moveToFirst())
+        {
+            do
+            { // for each row
+                for (int i = 0; i < cursor.getColumnCount(); i++)
+                {
+                    row.add(cursor.getString(i));
+                }
+
+                table.add(row); //add row to the list
+                row = new ArrayList();
+            }
+            while (cursor.moveToNext());
+        }
+
+        return table;
+    }
+
+    //get products of the category specified by the parameter
+    public List getProducts(String category)
+    {
+        List table = new ArrayList();
+
+        String selectQuery = "SELECT name, price FROM tbl_product " +
+                "WHERE category = \""+category+"\"";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        ArrayList row = new ArrayList(); //to store one row
+
+        if (cursor.moveToFirst())
+        {
+            while (cursor.moveToNext())
+            { // for each row
+                for (int i = 0; i < cursor.getColumnCount(); i++)
+                {
+                    row.add(cursor.getString(i));
+                }
+
+                table.add(row); //add row to the list
+                row = new ArrayList();
+            }
+        }
+
+        return table;
+    }
+
+    public ArrayList<String> getProductByID(int id)
+    {
+        String selectQuery = "SELECT name, price, category, description, stock FROM tbl_product " +
+                "WHERE product_id = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        ArrayList<String> row = new ArrayList<>(); //to store one row
+
+        if (cursor.moveToFirst())
+        {
+            for (int i = 0; i < cursor.getColumnCount(); i++)
+            {
+                row.add(cursor.getString(i));
+            }
+        }
+
+        return row;
     }
 
     public ArrayList<String> findBookingbyID(int id)

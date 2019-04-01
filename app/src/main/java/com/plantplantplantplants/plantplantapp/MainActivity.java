@@ -2,18 +2,25 @@ package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
     final DatabaseManager dbManager = new DatabaseManager(this);
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     //table names and statements
     String[] tables = {"tbl_account", "tbl_product", "tbl_order", "tbl_cart"};
@@ -81,6 +88,7 @@ public class MainActivity extends Activity
 
         //Radio button setting
         radioGroupSetting();
+
     }
 
     public void btnLogIn(View v)
@@ -92,6 +100,21 @@ public class MainActivity extends Activity
         if (dbManager.logInValidation(userName, password, isUser))
         {
             messageDisplay("Login Successful.");
+
+            Intent i = new Intent(MainActivity.this, UserMain.class);
+            sharedPreferences = getSharedPreferences("sharedPreferences", 0);
+            editor = sharedPreferences.edit();
+
+            String[] userInfo = dbManager.getUserInfo(userName);
+
+            editor.putString("fName", userInfo[3]);
+            editor.putString("lName", userInfo[4]);
+            editor.putString("address", userInfo[5]);
+            editor.putString("city", userInfo[6]);
+            editor.putString("province", userInfo[7]);
+            editor.commit();
+
+            startActivity(i);
         }
         else
         {

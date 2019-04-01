@@ -16,6 +16,7 @@
         android:layout_centerHorizontal="true"/>
 
     <TableLayout
+        android:id="@+id/latTableLayout"
         android:layout_width="@dimen/dp300"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtRegistration"
@@ -85,5 +86,69 @@
                 android:inputType="text"/>
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/address" />
+
+            <EditText
+                android:id="@+id/edtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/city" />
+
+            <EditText
+                android:id="@+id/edtCity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/province" />
+
+            <EditText
+                android:id="@+id/edtProvince"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"/>
+        </TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:layout_below="@id/latTableLayout"
+        android:layout_marginStart="@dimen/dp50"
+        android:onClick="btnRegister"/>
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:layout_toEndOf="@id/btnRegister"
+        android:layout_alignTop="@id/btnRegister"
+        android:onClick="btnCancel"/>
 </RelativeLayout>
