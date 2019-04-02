@@ -178,6 +178,27 @@ public class DatabaseManager extends SQLiteOpenHelper
         return row;
     }
 
+    public String[] getUserInfo(int id)
+    {
+        String[] row = new String[9];
+
+        String query = "SELECT * from tbl_account" +
+                " where account_id = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst())
+        {
+            for (int i = 0; i < row.length; i++)
+            {
+                row[i] = cursor.getString(i);
+            }
+        }
+
+        return row;
+    }
+
     public String[] retrieveAdmin(String userName)
     {
         String[] row = new String[5];
@@ -362,7 +383,7 @@ public class DatabaseManager extends SQLiteOpenHelper
 
         if (cursor.moveToFirst())
         {
-            while (cursor.moveToNext())
+            do
             { // for each row
                 for (int i = 0; i < cursor.getColumnCount(); i++)
                 {
@@ -371,7 +392,7 @@ public class DatabaseManager extends SQLiteOpenHelper
 
                 table.add(row); //add row to the list
                 row = new ArrayList();
-            }
+            } while (cursor.moveToNext());
         }
 
         return table;
@@ -381,6 +402,27 @@ public class DatabaseManager extends SQLiteOpenHelper
     {
         String selectQuery = "SELECT name, price, category, description, stock FROM tbl_product " +
                 "WHERE product_id = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        ArrayList<String> row = new ArrayList<>(); //to store one row
+
+        if (cursor.moveToFirst())
+        {
+            for (int i = 0; i < cursor.getColumnCount(); i++)
+            {
+                row.add(cursor.getString(i));
+            }
+        }
+
+        return row;
+    }
+
+    public ArrayList<String> getProductByIDWithCategory(int id, String category)
+    {
+        String selectQuery = "SELECT name, price, category, description, stock FROM tbl_product " +
+                "WHERE product_id = " + id + " AND category = \"" + category + "\"";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

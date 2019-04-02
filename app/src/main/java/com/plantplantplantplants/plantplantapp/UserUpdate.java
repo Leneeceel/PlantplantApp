@@ -50,7 +50,7 @@ public class UserUpdate extends Activity
 
         ContentValues contentValues = new ContentValues();
 
-        updatedInfo.records = dbManager.getUserInfo(sharedPreferences.getString("userName", null));
+        updatedInfo.records = dbManager.getUserInfo(sharedPreferences.getInt("id", 0));
 
         updatedInfo.records[3] = fName;
         updatedInfo.records[4] = lName;

@@ -107,6 +107,7 @@ public class MainActivity extends Activity
 
             String[] userInfo = dbManager.getUserInfo(userName);
 
+            editor.putInt("id", Integer.parseInt(userInfo[0]));
             editor.putString("fName", userInfo[3]);
             editor.putString("lName", userInfo[4]);
             editor.putString("address", userInfo[5]);

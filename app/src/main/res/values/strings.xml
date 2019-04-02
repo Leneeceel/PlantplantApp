@@ -21,11 +21,12 @@
     <string name="logOut">Log Out</string>
     <string name="detail">Product Detail</string>
     <string name="update">Update</string>
+    <string name="shoppingTitle">Click a name to see a product detail!</string>
 
     <string-array name="categories">
         <item>All</item>
         <item>Appliances</item>
-        <item>Books</item>
+        <item>Book</item>
         <item>Electronics</item>
         <item>Furniture</item>
         <item>Health</item>

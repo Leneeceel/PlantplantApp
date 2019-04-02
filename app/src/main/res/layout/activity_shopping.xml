@@ -6,10 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Shopping"
     android:background="@color/lightCyan">
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shoppingTitle"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/pt10"/>
     <Spinner
         android:id="@+id/spnCategory"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTitle"/>
 
     <ScrollView
         android:layout_width="match_parent"

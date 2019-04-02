@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -57,7 +58,11 @@ public class Shopping extends Activity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-
+                if (!parent.getSelectedItem().toString().equals("All"))
+                {
+                    String category = parent.getSelectedItem().toString();
+                    generateItems(category);
+                }
             }
 
             @Override
@@ -106,8 +111,66 @@ public class Shopping extends Activity
             nameAndPrice.append(row.get(1).toString());
 
             textViewInRow.setText(nameAndPrice);
-
+            textViewInRow.setTypeface(Typeface.DEFAULT_BOLD);
             imageViewInRow.setImageBitmap(images.get(table.indexOf(o)));
+
+            rows.add(new TableRow((this)));
+            rows.get(rowCount).setLayoutParams(tableLayoutParam);
+
+            rows.get(rowCount).addView(imageViewInRow);
+            rows.get(rowCount).addView(textViewInRow);
+
+            latTableLayout.addView(rows.get(rowCount));
+            rowCount++;
+        }
+    }
+
+    //generate items with a specified category
+    void generateItems(final String category)
+    {
+        //reset the table
+        latTableLayout.removeAllViews();
+        rowCount = 0;
+
+        final List table = dbManager.getProducts();
+        final List tableWithCategory = dbManager.getProducts(category);
+
+        tableLayoutParam = new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.MATCH_PARENT,
+                TableLayout.LayoutParams.WRAP_CONTENT);
+        ArrayList<TableRow> rows = new ArrayList<>();
+        ArrayList<Bitmap> images = getImages(category);
+
+        for (final Object o : tableWithCategory)
+        {
+            ArrayList row = (ArrayList) o;
+
+            TextView textViewInRow = new TextView(this);
+            ImageView imageViewInRow = new ImageView(this);
+
+            View.OnClickListener textViewOnClickListener = new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent i = new Intent(Shopping.this, Product_Detail.class);
+                    i.putExtra("product_id", table.indexOf(o));
+                    startActivity(i);
+                }
+            };
+
+            textViewInRow.setOnClickListener(textViewOnClickListener);
+
+            StringBuilder nameAndPrice = new StringBuilder();
+
+            //row.get(0) gets a name, row.get(1) gets a price
+            nameAndPrice.append(row.get(0).toString());
+            nameAndPrice.append("\n$ ");
+            nameAndPrice.append(row.get(1).toString());
+
+            textViewInRow.setText(nameAndPrice);
+            textViewInRow.setTypeface(Typeface.DEFAULT_BOLD);
+            imageViewInRow.setImageBitmap(images.get(tableWithCategory.indexOf(o)));
 
             rows.add(new TableRow((this)));
             rows.get(rowCount).setLayoutParams(tableLayoutParam);
@@ -122,10 +185,6 @@ public class Shopping extends Activity
 
     ArrayList<Bitmap> getImages()
     {
-//        Bitmap a = BitmapFactory.decodeResource(getResources(), R.drawable.beginning_c_oop);
-//
-//        ImageView img = findViewById(R.id.imgImg);
-//        img.setImageBitmap(scaled);
 
         ArrayList<Bitmap> images = new ArrayList<>();
         Bitmap img0 = BitmapFactory.decodeResource(getResources(), R.drawable.harry_potter);
@@ -222,6 +281,134 @@ public class Shopping extends Activity
         images.add(scaled29);
 
         return images;
+    }
+
+    ArrayList<Bitmap> getImages(String category)
+    {
+        ArrayList<Bitmap> images = new ArrayList<>();
+        Bitmap img0 = BitmapFactory.decodeResource(getResources(), R.drawable.harry_potter);
+        Bitmap img1 = BitmapFactory.decodeResource(getResources(), R.drawable.beginning_c_oop);
+        Bitmap img2 = BitmapFactory.decodeResource(getResources(), R.drawable.pro_asp_dot_net_core_mvc_2);
+        Bitmap img3 = BitmapFactory.decodeResource(getResources(), R.drawable.html_and_css_design_and_build_websites);
+        Bitmap img4 = BitmapFactory.decodeResource(getResources(), R.drawable.debugging);
+        Bitmap img5 = BitmapFactory.decodeResource(getResources(), R.drawable.software_quality_assurance);
+
+        Bitmap img6 = BitmapFactory.decodeResource(getResources(), R.drawable.humidifier);
+        Bitmap img7 = BitmapFactory.decodeResource(getResources(), R.drawable.dehumidifier);
+        Bitmap img8 = BitmapFactory.decodeResource(getResources(), R.drawable.robot_vacuum);
+        Bitmap img9 = BitmapFactory.decodeResource(getResources(), R.drawable.food_processor);
+        Bitmap img10 = BitmapFactory.decodeResource(getResources(), R.drawable.toaster);
+        Bitmap img11 = BitmapFactory.decodeResource(getResources(), R.drawable.fridge);
+
+        Bitmap img12 = BitmapFactory.decodeResource(getResources(), R.drawable.couch);
+        Bitmap img13 = BitmapFactory.decodeResource(getResources(), R.drawable.king_bed);
+        Bitmap img14 = BitmapFactory.decodeResource(getResources(), R.drawable.table);
+        Bitmap img15 = BitmapFactory.decodeResource(getResources(), R.drawable.chairs);
+        Bitmap img16 = BitmapFactory.decodeResource(getResources(), R.drawable.sofa);
+        Bitmap img17 = BitmapFactory.decodeResource(getResources(), R.drawable.king_sofa);
+
+        Bitmap img18 = BitmapFactory.decodeResource(getResources(), R.drawable.samsung_phone);
+        Bitmap img19 = BitmapFactory.decodeResource(getResources(), R.drawable.pixel_3);
+        Bitmap img20 = BitmapFactory.decodeResource(getResources(), R.drawable.iphone);
+        Bitmap img21 = BitmapFactory.decodeResource(getResources(), R.drawable.pixel_2);
+        Bitmap img22 = BitmapFactory.decodeResource(getResources(), R.drawable.pixel_1);
+        Bitmap img23 = BitmapFactory.decodeResource(getResources(), R.drawable.pixel_0);
+
+        Bitmap img24 = BitmapFactory.decodeResource(getResources(), R.drawable.vitamins);
+        Bitmap img25 = BitmapFactory.decodeResource(getResources(), R.drawable.vitality);
+        Bitmap img26 = BitmapFactory.decodeResource(getResources(), R.drawable.digestives);
+        Bitmap img27 = BitmapFactory.decodeResource(getResources(), R.drawable.cannabis_oil);
+        Bitmap img28 = BitmapFactory.decodeResource(getResources(), R.drawable.digest_t);
+        Bitmap img29 = BitmapFactory.decodeResource(getResources(), R.drawable.vitamin_d3);
+
+        Bitmap scaled0 = Bitmap.createScaledBitmap(img0, 300, 300, true);
+        Bitmap scaled1 = Bitmap.createScaledBitmap(img1, 300, 300, true);
+        Bitmap scaled2 = Bitmap.createScaledBitmap(img2, 300, 300, true);
+        Bitmap scaled3 = Bitmap.createScaledBitmap(img3, 300, 300, true);
+        Bitmap scaled4 = Bitmap.createScaledBitmap(img4, 300, 300, true);
+        Bitmap scaled5 = Bitmap.createScaledBitmap(img5, 300, 300, true);
+        Bitmap scaled6 = Bitmap.createScaledBitmap(img6, 300, 300, true);
+        Bitmap scaled7 = Bitmap.createScaledBitmap(img7, 300, 300, true);
+        Bitmap scaled8 = Bitmap.createScaledBitmap(img8, 300, 300, true);
+        Bitmap scaled9 = Bitmap.createScaledBitmap(img9, 300, 300, true);
+        Bitmap scaled10 = Bitmap.createScaledBitmap(img10, 300, 300, true);
+        Bitmap scaled11 = Bitmap.createScaledBitmap(img11, 300, 300, true);
+        Bitmap scaled12 = Bitmap.createScaledBitmap(img12, 300, 300, true);
+        Bitmap scaled13 = Bitmap.createScaledBitmap(img13, 300, 300, true);
+        Bitmap scaled14 = Bitmap.createScaledBitmap(img14, 300, 300, true);
+        Bitmap scaled15 = Bitmap.createScaledBitmap(img15, 300, 300, true);
+        Bitmap scaled16 = Bitmap.createScaledBitmap(img16, 300, 300, true);
+        Bitmap scaled17 = Bitmap.createScaledBitmap(img17, 300, 300, true);
+        Bitmap scaled18 = Bitmap.createScaledBitmap(img18, 300, 300, true);
+        Bitmap scaled19 = Bitmap.createScaledBitmap(img19, 300, 300, true);
+        Bitmap scaled20 = Bitmap.createScaledBitmap(img20, 300, 300, true);
+        Bitmap scaled21 = Bitmap.createScaledBitmap(img21, 300, 300, true);
+        Bitmap scaled22 = Bitmap.createScaledBitmap(img22, 300, 300, true);
+        Bitmap scaled23 = Bitmap.createScaledBitmap(img23, 300, 300, true);
+        Bitmap scaled24 = Bitmap.createScaledBitmap(img24, 300, 300, true);
+        Bitmap scaled25 = Bitmap.createScaledBitmap(img25, 300, 300, true);
+        Bitmap scaled26 = Bitmap.createScaledBitmap(img26, 300, 300, true);
+        Bitmap scaled27 = Bitmap.createScaledBitmap(img27, 300, 300, true);
+        Bitmap scaled28 = Bitmap.createScaledBitmap(img28, 300, 300, true);
+        Bitmap scaled29 = Bitmap.createScaledBitmap(img29, 300, 300, true);
+
+        ArrayList<Bitmap> appliances, book, electronics, furniture, health;
+        appliances = new ArrayList<>();
+        book = new ArrayList<>();
+        electronics = new ArrayList<>();
+        furniture = new ArrayList<>();
+        health = new ArrayList<>();
+
+        book.add(scaled0);
+        book.add(scaled1);
+        book.add(scaled2);
+        book.add(scaled3);
+        book.add(scaled4);
+        book.add(scaled5);
+
+        appliances.add(scaled6);
+        appliances.add(scaled7);
+        appliances.add(scaled8);
+        appliances.add(scaled9);
+        appliances.add(scaled10);
+        appliances.add(scaled11);
+
+        furniture.add(scaled12);
+        furniture.add(scaled13);
+        furniture.add(scaled14);
+        furniture.add(scaled15);
+        furniture.add(scaled16);
+        furniture.add(scaled17);
+
+        electronics.add(scaled18);
+        electronics.add(scaled19);
+        electronics.add(scaled20);
+        electronics.add(scaled21);
+        electronics.add(scaled22);
+        electronics.add(scaled23);
+
+        health.add(scaled24);
+        health.add(scaled25);
+        health.add(scaled26);
+        health.add(scaled27);
+        health.add(scaled28);
+        health.add(scaled29);
+
+        switch (category)
+        {
+            case "Appliances":
+                return appliances;
+            case "Book":
+                return book;
+            case "Furniture":
+                return furniture;
+            case "Electronics":
+                return electronics;
+            case "Health":
+                return health;
+            default:
+                return null;
+        }
     }
 
 }
