@@ -43,4 +43,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/latTableLayout"/>
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buyNow"
+        android:layout_below="@id/txtDesc"
+        android:onClick="btnBuyNow"/>
+    <Button
+        android:id="@+id/btnBackToShopping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/backToShopping"
+        android:layout_toEndOf="@id/btnAddToCart"
+        android:layout_alignTop="@id/btnAddToCart"
+        android:onClick="btnBackToShopping"/>
 </RelativeLayout>

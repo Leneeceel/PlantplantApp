@@ -185,7 +185,6 @@ public class Shopping extends Activity
 
     ArrayList<Bitmap> getImages()
     {
-
         ArrayList<Bitmap> images = new ArrayList<>();
         Bitmap img0 = BitmapFactory.decodeResource(getResources(), R.drawable.harry_potter);
         Bitmap img1 = BitmapFactory.decodeResource(getResources(), R.drawable.beginning_c_oop);
