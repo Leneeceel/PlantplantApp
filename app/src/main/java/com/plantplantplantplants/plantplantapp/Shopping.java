@@ -63,6 +63,10 @@ public class Shopping extends Activity
                     String category = parent.getSelectedItem().toString();
                     generateItems(category);
                 }
+                else
+                {
+                    generateItems();
+                }
             }
 
             @Override
