@@ -69,7 +69,7 @@ public class Product_Detail extends Activity
     }
     public void btnBuyNow(View v)
     {
-        Intent I = new Intent(Product_Detail.this, Purchase.class);
+        Intent i = new Intent(Product_Detail.this, Purchase.class);
         startActivity(i);
     }
 

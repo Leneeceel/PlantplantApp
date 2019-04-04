@@ -44,7 +44,6 @@ public class Shopping extends Activity
         latTableLayout = findViewById(R.id.latTableLayout);
 
         setSpinner();
-        generateItems();
     }
 
     void setSpinner()
@@ -58,21 +57,18 @@ public class Shopping extends Activity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                if (!parent.getSelectedItem().toString().equals("All"))
-                {
-                    String category = parent.getSelectedItem().toString();
-                    generateItems(category);
-                }
-                else
-                {
+                 String category = parent.getSelectedItem().toString();
+
+                 if (!category.equals("All"))
+                     generateItems(category);
+                 else
                     generateItems();
-                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
-                generateItems();
+//                generateItems();
             }
         });
     }
@@ -86,6 +82,8 @@ public class Shopping extends Activity
                 TableLayout.LayoutParams.WRAP_CONTENT);
         ArrayList<TableRow> rows = new ArrayList<>();
         ArrayList<Bitmap> images = getImages();
+
+        rowCount = 0;
 
         for (final Object o : table)
         {
@@ -130,7 +128,7 @@ public class Shopping extends Activity
     }
 
     //generate items with a specified category
-    void generateItems(final String category)
+    void generateItems(String category)
     {
         //reset the table
         latTableLayout.removeAllViews();
@@ -144,6 +142,7 @@ public class Shopping extends Activity
                 TableLayout.LayoutParams.WRAP_CONTENT);
         ArrayList<TableRow> rows = new ArrayList<>();
         ArrayList<Bitmap> images = getImages(category);
+
 
         for (final Object o : tableWithCategory)
         {
@@ -288,7 +287,6 @@ public class Shopping extends Activity
 
     ArrayList<Bitmap> getImages(String category)
     {
-        ArrayList<Bitmap> images = new ArrayList<>();
         Bitmap img0 = BitmapFactory.decodeResource(getResources(), R.drawable.harry_potter);
         Bitmap img1 = BitmapFactory.decodeResource(getResources(), R.drawable.beginning_c_oop);
         Bitmap img2 = BitmapFactory.decodeResource(getResources(), R.drawable.pro_asp_dot_net_core_mvc_2);
@@ -355,59 +353,55 @@ public class Shopping extends Activity
         Bitmap scaled28 = Bitmap.createScaledBitmap(img28, 300, 300, true);
         Bitmap scaled29 = Bitmap.createScaledBitmap(img29, 300, 300, true);
 
-        ArrayList<Bitmap> appliances, book, electronics, furniture, health;
+        ArrayList<Bitmap> all, appliances, book, electronics, furniture, health;
+        all = new ArrayList<>();
         appliances = new ArrayList<>();
         book = new ArrayList<>();
         electronics = new ArrayList<>();
         furniture = new ArrayList<>();
         health = new ArrayList<>();
 
-        book.add(scaled0);
-        book.add(scaled1);
-        book.add(scaled2);
-        book.add(scaled3);
-        book.add(scaled4);
-        book.add(scaled5);
-
-        appliances.add(scaled6);
-        appliances.add(scaled7);
-        appliances.add(scaled8);
-        appliances.add(scaled9);
-        appliances.add(scaled10);
-        appliances.add(scaled11);
-
-        furniture.add(scaled12);
-        furniture.add(scaled13);
-        furniture.add(scaled14);
-        furniture.add(scaled15);
-        furniture.add(scaled16);
-        furniture.add(scaled17);
-
-        electronics.add(scaled18);
-        electronics.add(scaled19);
-        electronics.add(scaled20);
-        electronics.add(scaled21);
-        electronics.add(scaled22);
-        electronics.add(scaled23);
-
-        health.add(scaled24);
-        health.add(scaled25);
-        health.add(scaled26);
-        health.add(scaled27);
-        health.add(scaled28);
-        health.add(scaled29);
-
         switch (category)
         {
             case "Appliances":
+                appliances.add(scaled6);
+                appliances.add(scaled7);
+                appliances.add(scaled8);
+                appliances.add(scaled9);
+                appliances.add(scaled10);
+                appliances.add(scaled11);
                 return appliances;
             case "Book":
+                book.add(scaled0);
+                book.add(scaled1);
+                book.add(scaled2);
+                book.add(scaled3);
+                book.add(scaled4);
+                book.add(scaled5);
                 return book;
             case "Furniture":
+                furniture.add(scaled12);
+                furniture.add(scaled13);
+                furniture.add(scaled14);
+                furniture.add(scaled15);
+                furniture.add(scaled16);
+                furniture.add(scaled17);
                 return furniture;
             case "Electronics":
+                electronics.add(scaled18);
+                electronics.add(scaled19);
+                electronics.add(scaled20);
+                electronics.add(scaled21);
+                electronics.add(scaled22);
+                electronics.add(scaled23);
                 return electronics;
             case "Health":
+                health.add(scaled24);
+                health.add(scaled25);
+                health.add(scaled26);
+                health.add(scaled27);
+                health.add(scaled28);
+                health.add(scaled29);
                 return health;
             default:
                 return null;
