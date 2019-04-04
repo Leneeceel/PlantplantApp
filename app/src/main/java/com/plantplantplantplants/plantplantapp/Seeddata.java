@@ -24,7 +24,7 @@ public class Seeddata
         a1.records[5] = "7 Pape Ave.";
         a1.records[6] = "Toronto";
         a1.records[7] = "ON";
-        a1.records[8] = "U";
+        a1.records[8] = "A";
 
         a2.records[1] = "jane11";
         a2.records[2] = "jane11";
