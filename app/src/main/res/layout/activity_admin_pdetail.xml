@@ -48,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/adminTxtDesc"
+        android:onClick="updateBtnClicked"
         android:text="Update" />
 
     <Button
@@ -55,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/updateButton"
+        android:onClick="deleteBtnClicked"
         android:text="Delete" />
 
     <Button
@@ -62,6 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/deleteButton"
+        android:onClick="cancelBtnClicked"
         android:text="Back" />
 
 </RelativeLayout>

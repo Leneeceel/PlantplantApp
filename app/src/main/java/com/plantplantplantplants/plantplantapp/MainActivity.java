@@ -115,8 +115,17 @@ public class MainActivity extends Activity
             editor.putString("province", userInfo[7]);
             editor.commit();
 
-            startActivity(i);
+            if(isUser){
+                i = new Intent(MainActivity.this, UserMain.class);
+                startActivity(i);
+            }
+            else{
+               Intent intent  = new Intent(MainActivity.this, AdminMainActivity.class);
+                startActivity(intent);
+            }
+
         }
+
         else
         {
             messageDisplay("Login Failed.");

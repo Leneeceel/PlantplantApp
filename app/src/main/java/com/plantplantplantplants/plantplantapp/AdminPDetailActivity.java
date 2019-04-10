@@ -1,25 +1,65 @@
 package com.plantplantplantplants.plantplantapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class AdminPDetailActivity extends AppCompatActivity {
+    final DatabaseManager dbManager = new DatabaseManager(this);
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    Intent i;
+    TextView txtNamePrice, txtDesc;
+    TableLayout latTableLayout;
+    ImageView imgImage;
+
+    int product_id;
+
+    ArrayList<String> productInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_pdetail);
+        sharedPreferences = getSharedPreferences("sharedPreferences", 0);
+        editor = sharedPreferences.edit();
+
+        txtNamePrice = findViewById(R.id.adminTxtNamePrice);
+        txtDesc = findViewById(R.id.adminTxtDesc);
+        latTableLayout = findViewById(R.id.adminLatTableLayout);
+        imgImage = findViewById(R.id.adminImgImage);
+
+        Intent i = getIntent();
+        product_id = i.getIntExtra("product_id", 0);
+        //Index starts with 1 in a table
+        productInfo = dbManager.getProductByID((product_id+1));
+        //productInfo index 0 = name, 1 = price, 2 = category, 3 = description, 4 = stock
+
+        txtNamePrice.setText(productInfo.get(2) + "\n" + productInfo.get(0) + "\n" + productInfo.get(1) +
+                "\n" + productInfo.get(4) + " left!");
+        txtDesc.setText(productInfo.get(3));
+
+        ArrayList<Bitmap> images = getImages();
+        imgImage.setImageBitmap(images.get(product_id));
+
+        editor.putInt("product_Id", product_id);
     }
 
     public void updateBtnClicked(View v){
         Intent intent = new Intent(this, AdminUpdateActivity.class);
+        intent.putExtra("product_id", product_id);
         startActivity(intent);
+
     }
 
     public void deleteBtnClicked(View v) {
@@ -27,7 +67,7 @@ public class AdminPDetailActivity extends AppCompatActivity {
     }
 
     public void cancelBtnClicked(View v) {
-
+        super.onBackPressed();
     }
 
     ArrayList<Bitmap> getImages()

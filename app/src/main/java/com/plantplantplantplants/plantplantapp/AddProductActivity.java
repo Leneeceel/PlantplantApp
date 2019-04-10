@@ -1,11 +1,14 @@
 package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,6 +18,11 @@ public class AddProductActivity extends Activity {
 
     ArrayList<String> newProduct;
 
+    EditText nameInput;
+    EditText priceInput;
+    EditText desInput;
+    EditText stockInput;
+    EditText categoryInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,14 +30,32 @@ public class AddProductActivity extends Activity {
 
         Intent intent = getIntent();
 
-        EditText nameInput = (EditText) findViewById(R.id.nameEditText);
-        EditText priceInput = (EditText) findViewById(R.id.priceEditText);
-        EditText desInput = (EditText) findViewById(R.id.desEditText);
-        EditText stockInput = (EditText) findViewById(R.id.stockEditText);
-        Spinner cateogorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        nameInput = findViewById(R.id.nameEditText);
+        priceInput = findViewById(R.id.priceEditText);
+        desInput = findViewById(R.id.desEditText);
+        stockInput = findViewById(R.id.stockEditText);
+        categoryInput = findViewById(R.id.categoryEditText);
 
     }
-    void addProduct() {
+    private void addProduct(View v) {
 
+
+        Product product = new Product();
+        product.records[1] = nameInput.getText().toString();
+        product.records[2] = priceInput.getText().toString();
+        product.records[3] = categoryInput.getText().toString();
+        product.records[4] = desInput.getText().toString();
+        product.records[5] = stockInput.getText().toString();
+
+        ContentValues values = new ContentValues();
+        dbManager.addRecord(values,"tbl_product", product.field,product.records);
+
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "New product successfully added",
+                Toast.LENGTH_LONG);
+        toast.show();
+
+        Intent i = new Intent(this, AdminMainActivity.class);
+        startActivity(i);
     }
 }
