@@ -199,49 +199,6 @@ public class DatabaseManager extends SQLiteOpenHelper
         return row;
     }
 
-    public String[] retrieveAdmin(String userName)
-    {
-        String[] row = new String[5];
-
-        String query = "SELECT * from tbl_admin" +
-                " where userName = \"" + userName + "\"";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        if (cursor.moveToFirst())
-        {
-            for (int i = 0; i < row.length; i++)
-            {
-                row[i] = cursor.getString(i);
-            }
-        }
-
-        return row;
-    }
-
-    //Retrieves a row of audience data specified by email
-    public String[] retrieveAudiencebyEmail(String email)
-    {
-        String[] row = new String[8];
-
-        String query = "SELECT * from tbl_audience" +
-                " where email_id = \"" + email + "\"";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        if (cursor.moveToFirst())
-        {
-            for (int i = 0; i < row.length; i++)
-            {
-                row[i] = cursor.getString(i);
-            }
-        }
-
-        return row;
-    }
-
     public void updateInfo(ContentValues values, String tableName, String fields[],String record[])
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -249,14 +206,6 @@ public class DatabaseManager extends SQLiteOpenHelper
         for (int i=1;i<record.length;i++)
             values.put(fields[i], record[i]);
         db.update(tableName, values, fields[0] + " = ?", new String[] { record[0] });
-    }
-    public void updateBookingInfo(ContentValues values, String tableName, String fields[],String record[])
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        for (int i=1;i<record.length;i++)
-            values.put(fields[i], record[i]);
-        db.update(tableName, values, fields[1] + " = ?", new String[] { record[1] });
     }
 
     public String[] retrieveMovie(String movieName)
@@ -419,6 +368,85 @@ public class DatabaseManager extends SQLiteOpenHelper
         return row;
     }
 
+    public int getCartNo(int account_id)
+    {
+        String selectQuery = "SELECT MAX(cart_id), ordered FROM tbl_cart " +
+                "WHERE account_id = " + account_id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        cursor.moveToFirst();
+
+        if (cursor.getInt(0) == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            if (cursor.getString(1).toUpperCase().equals("N"))
+            {
+                return cursor.getInt(0);
+            }
+            else
+            {
+                return cursor.getInt(0)+1;
+            }
+        }
+    }
+
+    public List getCart(int account_id)
+    {
+        List table = new ArrayList();
+
+        String selectQuery = "SELECT name, price, quantity, total FROM tbl_product " +
+                "JOIN tbl_cart USING (product_id) " +
+                "WHERE account_id = " + account_id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        ArrayList row = new ArrayList(); //to store one row
+
+        if (cursor.moveToFirst())
+        {
+            do
+            { // for each row
+                for (int i = 0; i < cursor.getColumnCount(); i++)
+                {
+                    row.add(cursor.getString(i));
+                }
+
+                table.add(row); //add row to the list
+                row = new ArrayList();
+            } while (cursor.moveToNext());
+        }
+
+        return table;
+    }
+
+    public ArrayList<Integer> getProductIDs(int account_id)
+    {
+        ArrayList<Integer> ids = new ArrayList<>();
+
+        String selectQuery = "SELECT product_id FROM tbl_product " +
+                "WHERE account_id = " + account_id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst())
+        {
+            do
+            { // for each row
+                for (int i = 0; i < cursor.getColumnCount(); i++)
+                {
+                    ids.add(cursor.getInt(i));
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return ids;
+    }
+
     public ArrayList<String> getProductByIDWithCategory(int id, String category)
     {
         String selectQuery = "SELECT name, price, category, description, stock FROM tbl_product " +
@@ -486,7 +514,6 @@ public class DatabaseManager extends SQLiteOpenHelper
                 addRecord(contentValues, tables[0], Account.field, seedData.accounts.get(i).records);
             }
         }
-        cursor.close();
 
         cursor = db.rawQuery(selectProduct, null);
         cursor.moveToFirst();
@@ -497,6 +524,6 @@ public class DatabaseManager extends SQLiteOpenHelper
                 addRecord(contentValues, tables[1], Product.field, seedData.products.get(i).records);
             }
         }
-
+        cursor.close();
     }
 }

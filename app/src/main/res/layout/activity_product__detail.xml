@@ -33,7 +33,6 @@
                 android:id="@+id/txtNamePrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="aaaa"
                 android:layout_column="2"/>
         </TableRow>
     </TableLayout>
@@ -48,9 +47,9 @@
         android:id="@+id/btnAddToCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/buyNow"
+        android:text="@string/addToCart"
         android:layout_below="@id/txtDesc"
-        android:onClick="btnBuyNow"/>
+        android:onClick="btnAddtoCart"/>
     <Button
         android:id="@+id/btnBackToShopping"
         android:layout_width="wrap_content"

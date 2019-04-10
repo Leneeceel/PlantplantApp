@@ -1,6 +1,10 @@
 package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -8,10 +12,16 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +41,7 @@ public class Product_Detail extends Activity
     ArrayList<String> productInfo;
     ArrayList<Integer> cart;
 
-    int product_id;
+    int product_id, account_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,8 +61,8 @@ public class Product_Detail extends Activity
 
     void getProductDetail()
     {
-        i = getIntent();
-        product_id = i.getIntExtra("product_id", 0);
+//        i = getIntent();
+        product_id = sharedPreferences.getInt("product_id", 0);
 
         //Index starts with 1 in a table
         productInfo = dbManager.getProductByID((product_id+1));
@@ -67,16 +77,73 @@ public class Product_Detail extends Activity
 
         editor.putInt("product_Id", product_id);
     }
-    public void btnBuyNow(View v)
+
+    public void btnAddtoCart(View v)
     {
         Intent i = new Intent(Product_Detail.this, Purchase.class);
-        startActivity(i);
+
+        ContentValues contentValues = new ContentValues();
+
+        Cart cart = new Cart();
+
+        account_id = sharedPreferences.getInt("id", 0);
+
+        cart.records[0] = Integer.toString(dbManager.getCartNo(account_id));
+        cart.records[1] = Integer.toString(product_id);
+        cart.records[2] = Integer.toString(account_id);
+        cart.records[3] = sharedPreferences.getString("price", "");
+        cart.records[4] = Integer.toString(1);
+        cart.records[5] = "N";
+
+        dbManager.addRecord(contentValues, "tbl_cart", cart.field, cart.records);
+
+        messageDisplay("Added to Cart Successfully!");
+        callPopUp();
+//        startActivity(i);
     }
 
     public void btnBackToShopping(View v)
     {
+        backToShopping();
+    }
+
+    void callPopUp()
+    {
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        adb.setTitle("Pop up");
+        adb.setMessage("Continue Shopping?");
+        adb.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                backToShopping();
+            }
+        });
+
+        adb.setNegativeButton("See my cart", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                Intent i = new Intent(Product_Detail.this, Purchase.class);
+                startActivity(i);
+            }
+        });
+
+        adb.show();
+    }
+
+    void backToShopping()
+    {
         Intent i = new Intent(Product_Detail.this, Shopping.class);
         startActivity(i);
+    }
+
+    void messageDisplay(String st)
+    {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                st,
+                Toast.LENGTH_LONG);
+        toast.show();
     }
 
     ArrayList<Bitmap> getImages()

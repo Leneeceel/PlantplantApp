@@ -2,6 +2,7 @@ package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -26,6 +27,8 @@ import java.util.List;
 public class Shopping extends Activity
 {
     final DatabaseManager dbManager = new DatabaseManager(this);
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     Spinner spnCategory;
 
@@ -42,6 +45,9 @@ public class Shopping extends Activity
 
         spnCategory = findViewById(R.id.spnCategory);
         latTableLayout = findViewById(R.id.latTableLayout);
+
+        sharedPreferences = getSharedPreferences("sharedPreferences", 0);
+        editor = sharedPreferences.edit();
 
         setSpinner();
     }
@@ -76,6 +82,7 @@ public class Shopping extends Activity
     //Populates a table with items and item info
     void generateItems()
     {
+        latTableLayout.removeAllViews();
         final List table = dbManager.getProducts();
         tableLayoutParam = new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
@@ -87,7 +94,7 @@ public class Shopping extends Activity
 
         for (final Object o : table)
         {
-            ArrayList row = (ArrayList) o;
+            final ArrayList row = (ArrayList) o;
 
             TextView textViewInRow = new TextView(this);
             ImageView imageViewInRow = new ImageView(this);
@@ -98,7 +105,10 @@ public class Shopping extends Activity
                 public void onClick(View v)
                 {
                     Intent i = new Intent(Shopping.this, Product_Detail.class);
-                    i.putExtra("product_id", table.indexOf(o));
+//                    i.putExtra("product_id", table.indexOf(o));
+                    editor.putInt("product_id", table.indexOf(o));
+                    editor.putString("price", row.get(1).toString());
+                    editor.commit();
                     startActivity(i);
                 }
             };
@@ -111,6 +121,7 @@ public class Shopping extends Activity
             nameAndPrice.append(row.get(0).toString());
             nameAndPrice.append("\n$ ");
             nameAndPrice.append(row.get(1).toString());
+//            editor.putString("price", row.get(1).toString());
 
             textViewInRow.setText(nameAndPrice);
             textViewInRow.setTypeface(Typeface.DEFAULT_BOLD);

@@ -52,7 +52,8 @@ public class MainActivity extends Activity
                     " product_id integer," +
                     " account_id integer," +
                     " total double,"+
-                    " quantity integer);"};
+                    " quantity integer," +
+                    " ordered text);"};
 
     EditText edtUserName,
             edtPassword;
@@ -62,7 +63,6 @@ public class MainActivity extends Activity
                 rdbUser;
 
     Button btnLogin;
-
 
     String userName,
             password;
@@ -89,6 +89,7 @@ public class MainActivity extends Activity
         //Radio button setting
         radioGroupSetting();
 
+
     }
 
     public void btnLogIn(View v)
@@ -101,7 +102,7 @@ public class MainActivity extends Activity
         {
             messageDisplay("Login Successful.");
 
-            Intent i = new Intent(MainActivity.this, UserMain.class);
+            Intent i;
             sharedPreferences = getSharedPreferences("sharedPreferences", 0);
             editor = sharedPreferences.edit();
 
@@ -115,17 +116,17 @@ public class MainActivity extends Activity
             editor.putString("province", userInfo[7]);
             editor.commit();
 
-            if(isUser){
+            if (isUser)
+            {
                 i = new Intent(MainActivity.this, UserMain.class);
                 startActivity(i);
             }
-            else{
-               Intent intent  = new Intent(MainActivity.this, AdminMainActivity.class);
-                startActivity(intent);
+            else
+            {
+//                i = new Intent(MainActivity.this, AdminMainActivity.class);
+//                startActivity(i);
             }
-
         }
-
         else
         {
             messageDisplay("Login Failed.");

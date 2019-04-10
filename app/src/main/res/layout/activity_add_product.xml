@@ -43,11 +43,10 @@
         android:text="Category"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/categoryEditText"
+    <Spinner
+        android:id="@+id/categorySpinner"
         android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:ems="10" />
+        android:layout_height="37dp"></Spinner>
 
     <TextView
         android:id="@+id/descriptionView"

@@ -33,7 +33,7 @@ public class Seeddata
         a2.records[5] = "22 Broadview Rd.";
         a2.records[6] = "Toronto";
         a2.records[7] = "ON";
-        a2.records[8] = "U";
+        a2.records[8] = "A";
 
         a3.records[1] = "homer99";
         a3.records[2] = "homer99";
