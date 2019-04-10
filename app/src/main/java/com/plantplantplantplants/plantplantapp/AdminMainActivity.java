@@ -17,7 +17,7 @@ public class AdminMainActivity extends Activity {
 
         Button addProductBtn = (Button) findViewById(R.id.addProductBtn);
         Button updateProductBtn = (Button) findViewById(R.id.updateProductBtn);
-        Button viewOrdersBtn = (Button) findViewById(R.id.viewOrdersBtn);
+            Button viewOrdersBtn = (Button) findViewById(R.id.viewOrdersBtn);
     }
 
     public void addClicked(View v) {
