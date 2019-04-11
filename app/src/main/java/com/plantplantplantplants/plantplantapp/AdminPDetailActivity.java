@@ -1,5 +1,6 @@
 package com.plantplantplantplants.plantplantapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AdminPDetailActivity extends AppCompatActivity {
+public class AdminPDetailActivity extends Activity {
     final DatabaseManager dbManager = new DatabaseManager(this);
 
     SharedPreferences sharedPreferences;
@@ -34,10 +35,10 @@ public class AdminPDetailActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("sharedPreferences", 0);
         editor = sharedPreferences.edit();
 
-        txtNamePrice = findViewById(R.id.adminTxtNamePrice);
+        txtNamePrice = findViewById(R.id.txtNamePrice);
         txtDesc = findViewById(R.id.adminTxtDesc);
-        latTableLayout = findViewById(R.id.adminLatTableLayout);
-        imgImage = findViewById(R.id.adminImgImage);
+        latTableLayout = findViewById(R.id.latTableLayout);
+        imgImage = findViewById(R.id.imgImage);
 
         Intent i = getIntent();
         product_id = i.getIntExtra("product_id", 0);
@@ -59,10 +60,6 @@ public class AdminPDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AdminUpdateActivity.class);
         intent.putExtra("product_id", product_id);
         startActivity(intent);
-
-    }
-
-    public void deleteBtnClicked(View v) {
 
     }
 
