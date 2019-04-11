@@ -78,7 +78,11 @@ public class Product_Detail extends Activity
 
         account_id = sharedPreferences.getInt("id", 0);
 
-        cart.records[0] = Integer.toString(dbManager.getCartNo(account_id));
+        int cartNo = dbManager.getCartNo(account_id);
+        editor.putInt("cart_id", cartNo);
+        editor.commit();
+
+        cart.records[0] = Integer.toString(cartNo);
         cart.records[1] = Integer.toString((product_id+1));
         cart.records[2] = Integer.toString(account_id);
         cart.records[3] = sharedPreferences.getString("price", "");

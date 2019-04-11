@@ -23,6 +23,21 @@
         android:onClick="btnPurchase"
         android:text="@string/buyMyItems" />
 
+
+    <TextView
+        android:id="@+id/txtTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total"
+        android:layout_toEndOf="@id/btnBackToShopping"
+        android:layout_below="@id/txtTitle"/>
+    <TextView
+        android:id="@+id/txtTotalDisp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/txtTotal"
+        android:layout_below="@id/txtTitle"/>
+
     <Button
         android:id="@+id/btnBackToShopping"
         android:layout_width="wrap_content"
@@ -45,17 +60,6 @@
 
         </TableLayout>
 
-        <TextView
-            android:id="@+id/txtTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/total"
-            />
-        <TextView
-            android:id="@+id/txtTotalDisp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
     </ScrollView>
 
 

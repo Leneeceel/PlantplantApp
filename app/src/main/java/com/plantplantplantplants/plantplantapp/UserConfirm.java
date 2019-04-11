@@ -16,9 +16,10 @@ public class UserConfirm extends Activity
         setContentView(R.layout.activity_user_confirm);
     }
 
-    public void backToShopping(View v)
+    public void btnBackToShopping(View v)
     {
         Intent i = new Intent(UserConfirm.this, Shopping.class);
         startActivity(i);
     }
+
 }
