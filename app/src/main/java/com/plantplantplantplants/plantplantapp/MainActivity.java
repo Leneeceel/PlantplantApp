@@ -123,8 +123,8 @@ public class MainActivity extends Activity
             }
             else
             {
-//                i = new Intent(MainActivity.this, AdminMainActivity.class);
-//                startActivity(i);
+                i = new Intent(MainActivity.this, AdminMain.class);
+                startActivity(i);
             }
         }
         else

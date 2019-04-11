@@ -2,16 +2,11 @@ package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,11 +19,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shopping extends Activity
+public class AdminProductListActivity extends Activity
 {
     final DatabaseManager dbManager = new DatabaseManager(this);
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     Spinner spnCategory;
 
@@ -36,23 +29,16 @@ public class Shopping extends Activity
     TableLayout.LayoutParams tableLayoutParam;
 
     int rowCount = 0;
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping);
+        setContentView(R.layout.activity_admin_product_list);
 
         spnCategory = findViewById(R.id.spnCategory);
         latTableLayout = findViewById(R.id.latTableLayout);
 
-        sharedPreferences = getSharedPreferences("sharedPreferences", 0);
-        editor = sharedPreferences.edit();
-
         setSpinner();
     }
-
     void setSpinner()
     {
         ArrayAdapter<CharSequence> spnCategoryAdap = ArrayAdapter.createFromResource(
@@ -64,11 +50,11 @@ public class Shopping extends Activity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-                 String category = parent.getSelectedItem().toString();
+                String category = parent.getSelectedItem().toString();
 
-                 if (!category.equals("All"))
-                     generateItems(category);
-                 else
+                if (!category.equals("All"))
+                    generateItems(category);
+                else
                     generateItems();
             }
 
@@ -80,15 +66,9 @@ public class Shopping extends Activity
         });
     }
 
-    public void btnSeeMyCart(View v)
-    {
-        Intent i = new Intent(Shopping.this, UserCart.class);
-        startActivity(i);
-    }
     //Populates a table with items and item info
     void generateItems()
     {
-        latTableLayout.removeAllViews();
         final List table = dbManager.getProducts();
         tableLayoutParam = new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
@@ -100,7 +80,7 @@ public class Shopping extends Activity
 
         for (final Object o : table)
         {
-            final ArrayList row = (ArrayList) o;
+            ArrayList row = (ArrayList) o;
 
             TextView textViewInRow = new TextView(this);
             ImageView imageViewInRow = new ImageView(this);
@@ -110,11 +90,8 @@ public class Shopping extends Activity
                 @Override
                 public void onClick(View v)
                 {
-                    Intent i = new Intent(Shopping.this, Product_Detail.class);
-//                    i.putExtra("product_id", table.indexOf(o));
-                    editor.putInt("product_id", table.indexOf(o));
-                    editor.putString("price", row.get(1).toString());
-                    editor.commit();
+                    Intent i = new Intent(AdminProductListActivity.this,AdminPDetailActivity.class);
+                    i.putExtra("product_id", table.indexOf(o));
                     startActivity(i);
                 }
             };
@@ -127,7 +104,6 @@ public class Shopping extends Activity
             nameAndPrice.append(row.get(0).toString());
             nameAndPrice.append("\n$ ");
             nameAndPrice.append(row.get(1).toString());
-//            editor.putString("price", row.get(1).toString());
 
             textViewInRow.setText(nameAndPrice);
             textViewInRow.setTypeface(Typeface.DEFAULT_BOLD);
@@ -173,7 +149,7 @@ public class Shopping extends Activity
                 @Override
                 public void onClick(View v)
                 {
-                    Intent i = new Intent(Shopping.this, Product_Detail.class);
+                    Intent i = new Intent(AdminProductListActivity.this, AdminPDetailActivity.class);
                     i.putExtra("product_id", table.indexOf(o));
                     startActivity(i);
                 }
@@ -424,5 +400,4 @@ public class Shopping extends Activity
                 return null;
         }
     }
-
 }

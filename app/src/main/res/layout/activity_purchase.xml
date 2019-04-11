@@ -4,24 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Purchase">
-
+    tools:context=".Purchase"
+    android:background="@color/lightCyan">
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/yourCart"
+        android:text="@string/payInfo"
         android:textSize="@dimen/pt10"
         android:layout_centerHorizontal="true"/>
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TableLayout
-            android:id="@+id/latTableLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1">
 
-        </TableLayout>
-    </ScrollView>
+    <TableLayout
+        android:id="@+id/latTableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:layout_below="@id/txtTitle">
+
+        <TableRow>
+            <TextView android:text="@string/cardNo" />
+            <EditText android:inputType="text" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/purchase"
+        android:layout_below="@id/latTableLayout"
+        android:onClick="btnOK"/>
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:layout_below="@id/latTableLayout"
+        android:layout_toEndOf="@id/btnOK"
+        android:onClick="btnCancel"/>
 </RelativeLayout>

@@ -25,7 +25,13 @@
     <string name="addToCart">Add to Cart</string>
     <string name="backToShopping">Back to Shopping</string>
     <string name="yourCart">Your Cart</string>
-
+    <string name="buyMyItems">Buy My Items</string>
+    <string name="payInfo">Payment Information</string>
+    <string name="cardNo">Card #: </string>
+    <string name="purchase">Purchase</string>
+    <string name="successful">Purchase Successful!</string>
+    <string name="total">Total: </string>
+    <string name="seeMyCart">See My Cart</string>
     <string-array name="categories">
         <item>All</item>
         <item>Appliances</item>

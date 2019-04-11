@@ -34,7 +34,7 @@ public class AddProductActivity extends Activity {
         priceInput = findViewById(R.id.priceEditText);
         desInput = findViewById(R.id.desEditText);
         stockInput = findViewById(R.id.stockEditText);
-        categoryInput = findViewById(R.id.categoryEditText);
+//        categoryInput = findViewById(R.id.category);
 
     }
     private void addProduct(View v) {
@@ -55,7 +55,7 @@ public class AddProductActivity extends Activity {
                 Toast.LENGTH_LONG);
         toast.show();
 
-        Intent i = new Intent(this, AdminMainActivity.class);
+        Intent i = new Intent(this, AdminMain.class);
         startActivity(i);
     }
 }

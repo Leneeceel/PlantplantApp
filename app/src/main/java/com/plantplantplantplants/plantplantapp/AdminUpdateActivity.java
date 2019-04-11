@@ -13,7 +13,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AdminUpdateActivity extends Activity {
+public class AdminUpdateActivity extends Activity
+{
     final DatabaseManager dbManager = new DatabaseManager(this);
 
     SharedPreferences sharedPreferences;
@@ -69,7 +70,7 @@ public class AdminUpdateActivity extends Activity {
     }
 
     public void cancelBtnClicked(View v){
-        Intent i = new Intent(this, AdminMainActivity.class);
+        Intent i = new Intent(this, AdminMain.class);
         startActivity(i);
     }
 }

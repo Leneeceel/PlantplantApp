@@ -429,7 +429,9 @@ public class DatabaseManager extends SQLiteOpenHelper
         ArrayList<Integer> ids = new ArrayList<>();
 
         String selectQuery = "SELECT product_id FROM tbl_product " +
+                "JOIN tbl_cart USING (product_id) " +
                 "WHERE account_id = " + account_id;
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 

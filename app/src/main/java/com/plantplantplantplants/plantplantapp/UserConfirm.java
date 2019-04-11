@@ -6,32 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class Purchase extends Activity
+public class UserConfirm extends Activity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purchase);
+        setContentView(R.layout.activity_user_confirm);
     }
 
-    public void btnOK(View v)
+    public void backToShopping(View v)
     {
-        Intent i = new Intent(Purchase.this, UserConfirm.class);
-        i.putExtra("cardNo", 0);
-
-
-
-
+        Intent i = new Intent(UserConfirm.this, Shopping.class);
         startActivity(i);
     }
-
-    public void btnCancel(View v)
-    {
-        Intent i = new Intent(Purchase.this, UserCart.class);
-        startActivity(i);
-    }
-
-
 }
