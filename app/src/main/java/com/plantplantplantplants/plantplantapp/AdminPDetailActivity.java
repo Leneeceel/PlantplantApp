@@ -36,7 +36,7 @@ public class AdminPDetailActivity extends Activity {
         editor = sharedPreferences.edit();
 
         txtNamePrice = findViewById(R.id.txtNamePrice);
-        txtDesc = findViewById(R.id.adminTxtDesc);
+        txtDesc = findViewById(R.id.txtDesc);
         latTableLayout = findViewById(R.id.latTableLayout);
         imgImage = findViewById(R.id.imgImage);
 
