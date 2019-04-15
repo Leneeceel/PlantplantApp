@@ -13,6 +13,8 @@
         <activity android:name=".Purchase" />
         <activity android:name=".AdminOrdersActivity" />
         <activity android:name=".AdminProductListActivity" />
+        <activity android:name=".AdminPDetailActivity"/>
+        <activity android:name=".AdminUpdateActivity"/>
         <activity android:name=".AdminMain" />
         <activity android:name=".UserCart" />
         <activity android:name=".UserUpdate" />

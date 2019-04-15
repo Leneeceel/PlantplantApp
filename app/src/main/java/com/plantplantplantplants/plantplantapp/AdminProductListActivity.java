@@ -2,6 +2,7 @@ package com.plantplantplantplants.plantplantapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -22,7 +23,8 @@ import java.util.List;
 public class AdminProductListActivity extends Activity
 {
     final DatabaseManager dbManager = new DatabaseManager(this);
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     Spinner spnCategory;
 
     TableLayout latTableLayout;
@@ -36,7 +38,8 @@ public class AdminProductListActivity extends Activity
 
         spnCategory = findViewById(R.id.spnCategory);
         latTableLayout = findViewById(R.id.latTableLayout);
-
+        sharedPreferences = getSharedPreferences("sharedPreferences", 0);
+        editor = sharedPreferences.edit();
         setSpinner();
     }
     void setSpinner()
@@ -69,6 +72,7 @@ public class AdminProductListActivity extends Activity
     //Populates a table with items and item info
     void generateItems()
     {
+        latTableLayout.removeAllViews();
         final List table = dbManager.getProducts();
         tableLayoutParam = new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,

@@ -45,13 +45,13 @@ public class AdminUpdateActivity extends Activity
         productPrice.setText(productInfo.get(1));
         productCategory.setText(productInfo.get(2));
         productDescription.setText(productInfo.get(3));
-        productDescription.setText(productInfo.get(4));
+        productStock.setText(productInfo.get(4));
     }
-    public void updateBtnClicked(View v){
+    public void updateBtnClicked(View v) throws Exception{
         String[] records = new String[6];
         String[] fields = Product.field.clone();
 
-        records[0] = Integer.toString(product_id);
+        records[0] = Integer.toString(product_id+1);
         records[1] = productName.getText().toString();
         records[2] = productPrice.getText().toString();
         records[3] = productCategory.getText().toString();
@@ -60,12 +60,13 @@ public class AdminUpdateActivity extends Activity
 
         ContentValues values = new ContentValues();
 
-        dbManager.updateInfo(values, "tbl_product", fields, records);
+        dbManager.updateProduct(values,"tbl_product", fields, records);
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Product successfully changed",
                 Toast.LENGTH_LONG);
         toast.show();
-
+        Intent i = new Intent(this, AdminMain.class);
+        startActivity(i);
 
     }
 

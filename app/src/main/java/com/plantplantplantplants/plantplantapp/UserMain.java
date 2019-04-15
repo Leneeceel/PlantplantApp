@@ -38,6 +38,8 @@ public class UserMain extends Activity
                 + address + ", " + city + ", " + province;
 
         txtWelcome.setText(userInfoDisplay);
+        //start music
+//        startService(new Intent(getBaseContext(), MusicService.class));
     }
 
     public void btnShopping(View v)

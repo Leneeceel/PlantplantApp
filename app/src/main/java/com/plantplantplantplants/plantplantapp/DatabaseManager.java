@@ -528,4 +528,48 @@ public class DatabaseManager extends SQLiteOpenHelper
         }
         cursor.close();
     }
+
+
+    public int updateProduct(ContentValues values, String tableName, String fields[],String record[]) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        for (int i=1;i<record.length;i++)
+            values.put(fields[i], record[i]);
+
+        // updating row with given id = record[0]
+        return db.update(tableName, values, fields[0] + " = ?",
+                new String[] { record[0] });
+    }
+
+    public int updateOrderStatus(ContentValues values, String tableName, String fields[],String record[]){
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (int i=1;i<record.length;i++)
+            values.put(fields[i], record[i]);
+
+        // updating row with given id = record[0]
+        return db.update(tableName, values, fields[0] + " = ?",
+                new String[] { record[0] });
+    }
+
+    //get order by id
+    public ArrayList<String> getOrderByID(int id)
+    {
+        String selectQuery = "SELECT order_id, account_id, cart_id, orderDate, status FROM tbl_order " +
+                "WHERE order_id = " + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        ArrayList<String> row = new ArrayList<>(); //to store one row
+
+        if (cursor.moveToFirst())
+        {
+            for (int i = 0; i < cursor.getColumnCount(); i++)
+            {
+                row.add(cursor.getString(i));
+            }
+        }
+
+        return row;
+    }
 }

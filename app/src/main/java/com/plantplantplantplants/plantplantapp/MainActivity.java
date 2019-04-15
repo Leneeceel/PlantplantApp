@@ -46,7 +46,8 @@ public class MainActivity extends Activity
                     "(order_id integer primary key autoincrement, " +
                     " account_id integer," +
                     " cart_id text," +
-                    " orderDate text);",
+                    " orderDate text," +
+                    " status);",
             "create table tbl_cart " +
                     "(cart_id integer, " +
                     " product_id integer," +
