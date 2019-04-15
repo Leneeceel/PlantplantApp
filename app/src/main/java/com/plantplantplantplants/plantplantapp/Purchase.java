@@ -29,7 +29,7 @@ public class Purchase extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase);
-        sharedPreferences = getSharedPreferences("sharedPreferneces", 0);
+        sharedPreferences = getSharedPreferences("sharedPreferences", 0);
 //        editor = sharedPreferences.edit();
     }
 
