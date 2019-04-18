@@ -19,7 +19,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Name" />
+                android:text="@string/productName" />
 
             <EditText
                 android:id="@+id/pName"
@@ -35,7 +35,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="195dp"
                 android:layout_height="wrap_content"
-                android:text="Price" />
+                android:text="@string/price" />
 
             <EditText
                 android:id="@+id/price"
@@ -52,7 +52,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category" />
+                android:text="@string/category" />
 
             <EditText
                 android:id="@+id/category"
@@ -69,7 +69,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description" />
+                android:text="@string/description" />
 
             <EditText
                 android:id="@+id/descripition"
@@ -86,7 +86,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stock" />
+                android:text="@string/stock" />
 
             <EditText
                 android:id="@+id/stock"
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/updateTable"
         android:onClick="updateBtnClicked"
-        android:text="Update" />
+        android:text="@string/updateBtn2" />
 
     <Button
         android:id="@+id/cancelBtn"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/updateBtn"
         android:onClick="cancelBtnClicked"
-        android:text="Cancel" />
+        android:text="@string/cancelBtn"/>
 
 
 </RelativeLayout>

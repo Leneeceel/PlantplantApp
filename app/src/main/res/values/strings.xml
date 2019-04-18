@@ -41,4 +41,21 @@
         <item>Health</item>
     </string-array>
 
+    <!-- strings for admin -->
+    <!--Buttons-->
+    <string name="addBtn">Add Product</string>
+    <string name="updateBtn">Update/Delete Product</string>
+    <string name="viewOrdersBtn">View Orders</string>
+    <string name="updateBtn2">Update</string>
+    <string name="backBtn">Back</string>
+    <string name="cancelBtn">Cancel</string>
+
+    <!--Textview-->
+    <string name="category">Category</string>
+    <string name="price">Price</string>
+    <string name="productName">Product Name</string>
+    <string name="description">Description</string>
+    <string name="stock">Stock</string>
+    <string name="orderTitle">Please click orders status to confirm it</string>
+
 </resources>

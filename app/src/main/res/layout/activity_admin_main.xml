@@ -15,7 +15,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="104dp"
             android:onClick="addClicked"
-            android:text="Add Product" />
+            android:text="@string/addBtn" />
 
         <Button
             android:id="@+id/updateProductBtn"
@@ -26,7 +26,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="210dp"
             android:onClick="updateClicked"
-            android:text="Update/Delete Product" />
+            android:text="@string/updateBtn" />
 
         <Button
             android:id="@+id/viewOrdersBtn"
@@ -37,6 +37,6 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="315dp"
             android:onClick="viewOrdersClicked"
-            android:text="View Orders" />
+            android:text="@string/viewOrdersBtn" />
 
 </RelativeLayout>
