@@ -11,7 +11,7 @@
         android:id="@+id/orderTxtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please click orders status to confirm it" />
+        android:text="@string/orderTitle" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtDesc"
         android:onClick="updateBtnClicked"
-        android:text="Update" />
+        android:text="@string/updateBtn2" />
 
     <Button
         android:id="@+id/backButton"
@@ -58,6 +58,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/updateButton"
         android:onClick="cancelBtnClicked"
-        android:text="Back" />
+        android:text="@string/backBtn" />
 
 </RelativeLayout>
