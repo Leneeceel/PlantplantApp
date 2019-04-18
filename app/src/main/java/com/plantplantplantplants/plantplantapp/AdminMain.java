@@ -16,7 +16,7 @@ public class AdminMain extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
-        Button addProductBtn = (Button) findViewById(R.id.addProductBtn);
+//        Button addProductBtn = (Button) findViewById(R.id.addProductBtn);
         Button updateProductBtn = (Button) findViewById(R.id.updateProductBtn);
         Button viewOrdersBtn = (Button) findViewById(R.id.viewOrdersBtn);
         Button logoutBtn = (Button) findViewById(R.id.logoutBtn);
