@@ -39,7 +39,7 @@ public class UserMain extends Activity
 
         txtWelcome.setText(userInfoDisplay);
         //start music
-//        startService(new Intent(getBaseContext(), MusicService.class));
+        startService(new Intent(getBaseContext(), MusicService.class));
     }
 
     public void btnShopping(View v)
