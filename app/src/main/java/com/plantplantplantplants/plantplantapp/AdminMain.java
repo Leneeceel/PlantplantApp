@@ -19,6 +19,7 @@ public class AdminMain extends Activity
         Button addProductBtn = (Button) findViewById(R.id.addProductBtn);
         Button updateProductBtn = (Button) findViewById(R.id.updateProductBtn);
         Button viewOrdersBtn = (Button) findViewById(R.id.viewOrdersBtn);
+        Button logoutBtn = (Button) findViewById(R.id.logoutBtn);
     }
 
     public void addClicked(View v) {
@@ -33,6 +34,11 @@ public class AdminMain extends Activity
 
     public void viewOrdersClicked(View v) {
         Intent intent = new Intent(this, AdminOrdersActivity.class);
+        startActivity(intent);
+    }
+
+    public void logoutBtnClicked(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

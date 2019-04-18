@@ -69,6 +69,11 @@ public class AdminProductListActivity extends Activity
         });
     }
 
+    public void goToMain(View v){
+        Intent i = new Intent(this, AdminMain.class);
+        startActivity(i);
+    }
+
     //Populates a table with items and item info
     void generateItems()
     {

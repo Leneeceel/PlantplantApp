@@ -23,6 +23,7 @@ public class UserMain extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        stopService(new Intent(getBaseContext(), MusicService.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_main);
         txtWelcome = findViewById(R.id.txtWelcome);
@@ -54,6 +55,9 @@ public class UserMain extends Activity
     }
     public void btnLogOut(View v)
     {
+        Intent i = new Intent(this, MainActivity.class);
+        stopService(new Intent(getBaseContext(), MusicService.class));
+        startActivity(i);
 
     }
 }

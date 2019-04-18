@@ -104,7 +104,7 @@ public class AdminOrdersActivity extends Activity
             latTableLayout.addView(rows.get(rowCount));
             rowCount++;
 
-//            textViewInRow.setOnClickListener(textViewOnClickListener);
+            textViewsInRow.get(4).setOnClickListener(textViewOnClickListener);
 //
 //            StringBuilder orders = new StringBuilder();
 //
@@ -136,6 +136,11 @@ public class AdminOrdersActivity extends Activity
                 st,
                 Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public void backToMain(View v){
+        Intent i = new Intent(this, AdminMain.class);
+        startActivity(i);
     }
 
 }

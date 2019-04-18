@@ -11,11 +11,20 @@
         android:id="@+id/orderTxtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/orderTitle" />
+        android:text="@string/orderTitle"
+        android:textSize="@dimen/pt10"/>
+
+    <Button
+        android:id="@+id/backToMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orderTxtTitle"
+        android:onClick="backToMain"
+        android:text="@string/mainPage" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/orderTxtTitle" >
+        android:layout_below="@id/backToMain">
         <TableLayout
             android:id="@+id/latTableLayout"
             android:layout_width="match_parent"

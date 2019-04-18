@@ -14,11 +14,19 @@
         android:text="@string/shoppingTitle"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/pt10"/>
+
+    <Button
+        android:id="@+id/goToMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTitle"
+        android:onClick="goToMain"
+        android:text="@string/mainPage" />
     <Spinner
         android:id="@+id/spnCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtTitle"/>
+        android:layout_below="@id/goToMain"/>
 
     <ScrollView
         android:layout_width="match_parent"

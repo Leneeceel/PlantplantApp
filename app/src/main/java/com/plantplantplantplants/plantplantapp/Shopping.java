@@ -85,6 +85,11 @@ public class Shopping extends Activity
         Intent i = new Intent(Shopping.this, UserCart.class);
         startActivity(i);
     }
+
+    public void btnMainPage(View v){
+        Intent i = new Intent(Shopping.this, UserMain.class);
+        startActivity(i);
+    }
     //Populates a table with items and item info
     void generateItems()
     {

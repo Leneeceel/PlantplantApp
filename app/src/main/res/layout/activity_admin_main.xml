@@ -40,4 +40,17 @@
             android:onClick="viewOrdersClicked"
             android:text="@string/viewOrdersBtn" />
 
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="264dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="424dp"
+            android:layout_marginEnd="74dp"
+            android:onClick="logoutBtnClicked"
+            android:text="@string/logOut" />
+
 </RelativeLayout>
