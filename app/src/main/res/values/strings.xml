@@ -32,6 +32,11 @@
     <string name="successful">Purchase Successful!</string>
     <string name="total">Total: </string>
     <string name="seeMyCart">See My Cart</string>
+    <string name="order_id">Order ID</string>
+    <string name="account_id">Account ID</string>
+    <string name="order_date">Order Date</string>
+    <string name="status">Status</string>
+    <string name="cart_id">Cart ID</string>
     <string-array name="categories">
         <item>All</item>
         <item>Appliances</item>

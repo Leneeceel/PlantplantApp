@@ -14,7 +14,7 @@ public class UserMain extends Activity
     final DatabaseManager dbManager = new DatabaseManager(this);
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
+    MusicService musicService;
     Intent i;
 
     TextView txtWelcome;
@@ -34,12 +34,14 @@ public class UserMain extends Activity
         city = sharedPreferences.getString("city", null);
         province = sharedPreferences.getString("province", null);
 
+        musicService = new MusicService();
+
         String userInfoDisplay = "Welcome, " + fName + " " + lName + "!\n"
                 + address + ", " + city + ", " + province;
 
         txtWelcome.setText(userInfoDisplay);
-        //start music
-//        startService(new Intent(getBaseContext(), MusicService.class));
+//        start music
+        startService(new Intent(this, MusicService.class));
     }
 
     public void btnShopping(View v)

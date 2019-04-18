@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -22,8 +23,6 @@ public class AdminOrdersActivity extends Activity
 {
     ArrayList<String> orderInfo;
     final DatabaseManager dbManager = new DatabaseManager(this);
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
     TableLayout latTableLayout;
     TableLayout.LayoutParams tableLayoutParam;
     int rowCount = 0;
@@ -32,12 +31,13 @@ public class AdminOrdersActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_orders);
+        latTableLayout = findViewById(R.id.latTableLayout);
         generateOrders();
     }
 
-    public void generateOrders(){
-        latTableLayout.removeAllViews();
-        final List table = dbManager.getTable("tbl_orders");
+    public void generateOrders()
+    {
+        final List table = dbManager.getTable("tbl_order");
         tableLayoutParam = new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT);
@@ -45,10 +45,14 @@ public class AdminOrdersActivity extends Activity
         rowCount = 0;
         for (final Object o : table)
         {
-            final ArrayList row = (ArrayList) o;
-
-            TextView textViewInRow = new TextView(this);
-            ImageView imageViewInRow = new ImageView(this);
+            ArrayList row = (ArrayList) o;
+            ArrayList<TextView> textViewsInRow = new ArrayList<>();
+            for (int i=0;i<row.size();i++)
+            {
+                textViewsInRow.add(new TextView(this));
+                textViewsInRow.get(i).setGravity(Gravity.CENTER);
+                textViewsInRow.get(i).setText(row.get(i).toString());
+            }
 
             View.OnClickListener textViewOnClickListener = new View.OnClickListener()
             {
@@ -73,9 +77,7 @@ public class AdminOrdersActivity extends Activity
 
                     dbManager.updateOrderStatus(values,"tbl_order",fields,records);
 
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "Product successfully changed",
-                            Toast.LENGTH_LONG);
+                    messageDisplay("Product successfully changed");
 
                     //refresh the current activity
                     finish();
@@ -84,27 +86,56 @@ public class AdminOrdersActivity extends Activity
                 }
             };
 
-            textViewInRow.setOnClickListener(textViewOnClickListener);
-
-            StringBuilder orders = new StringBuilder();
-
-            //row.get(0) gets a name, row.get(1) gets a price
-            orders.append(row.get(0).toString());
-            orders.append("\n$ ");
-            orders.append(row.get(1).toString());
-
-
-            textViewInRow.setText(orders);
-            textViewInRow.setTypeface(Typeface.DEFAULT_BOLD);
-
-
             rows.add(new TableRow((this)));
             rows.get(rowCount).setLayoutParams(tableLayoutParam);
+            for (int i = 0; i < textViewsInRow.size(); i++)
+            {
+                rows.get(rowCount).addView(textViewsInRow.get(i));
+            }
 
-            rows.get(rowCount).addView(textViewInRow);
+            //If the status is confirmed, show the cancel button
+//            if (row.get(7).toString().equals("Confirmed"))
+//            {
+//                changeStatus = setOnClickOnCancelButton(Integer.parseInt((row.get(1)).toString()));
+//                rows.get(rowCount).addView(changeStatus);
+//            }
 
+//            latTableLayout.addView(rows.get(rowCount), (rowCount+1));
             latTableLayout.addView(rows.get(rowCount));
             rowCount++;
+
+//            textViewInRow.setOnClickListener(textViewOnClickListener);
+//
+//            StringBuilder orders = new StringBuilder();
+//
+//            //row.get(0) gets a name, row.get(1) gets a price
+//            orders.append(row.get(0).toString());
+//            orders.append("\n$ ");
+//            orders.append(row.get(1).toString());
+//
+//
+//            textViewInRow.setText(orders);
+//            textViewInRow.setTypeface(Typeface.DEFAULT_BOLD);
+//
+//
+//            rows.add(new TableRow((this)));
+//            rows.get(rowCount).setLayoutParams(tableLayoutParam);
+//
+//            rows.get(rowCount).addView(textViewInRow);
+//
+//            latTableLayout.addView(rows.get(rowCount));
+//            rowCount++;
         }
     }
+
+
+    //Display a parameter value as a toast message
+    void messageDisplay(String st)
+    {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                st,
+                Toast.LENGTH_LONG);
+        toast.show();
+    }
+
 }

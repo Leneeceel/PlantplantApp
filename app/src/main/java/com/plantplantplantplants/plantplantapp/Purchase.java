@@ -53,6 +53,7 @@ public class Purchase extends Activity
         order.records[1] = String.valueOf(account_id);
         order.records[2] = String.valueOf(cart_id);
         order.records[3] = currDate;
+        order.records[4] = "Pending";
         dbManager.addRecord(contentValues, "tbl_order", order.field, order.records);
 
         startActivity(i);

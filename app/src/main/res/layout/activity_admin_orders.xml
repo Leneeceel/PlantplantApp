@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminOrdersActivity">
+    tools:context=".AdminOrdersActivity"
+    android:background="@color/lightCyan">
 
     <TextView
         android:id="@+id/orderTxtTitle"
@@ -17,10 +18,18 @@
         android:layout_below="@id/orderTxtTitle" >
         <TableLayout
             android:id="@+id/latTableLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="1">
-
+            android:stretchColumns="*">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView android:text="@string/order_id" />
+                <TextView android:text="@string/account_id" />
+                <TextView android:text="@string/cart_id" />
+                <TextView android:text="@string/order_date"/>
+                <TextView android:text="@string/status" />
+            </TableRow>
         </TableLayout>
     </ScrollView>
 
