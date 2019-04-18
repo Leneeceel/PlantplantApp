@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// Contributors
+// Hyeonjae Hwang, Jeangmin Yang
+
 public class MainActivity extends Activity
 {
     final DatabaseManager dbManager = new DatabaseManager(this);
